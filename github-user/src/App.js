@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 
+import UserCard from './Components/UserCard';
+import FollowerCard from './Components/FollowerCard';
+
 const followers = [];
 const user = [];
 
@@ -28,15 +31,20 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/Veilios`)
       .then((res) => {
+        console.log("Res", res.data)
         this.setState({
           ...this.state,
-          user: res.data.message
-        })
-        .catch((err) => console.log("Error 1", err));
-      });
+          user: res.data.login
+        });
+        console.log("User", user);
+        console.log("Followers", followers);
+      })
+      .catch((err) => console.log("Error 1", err));
+      ;
   };
 
   componentDidUpdate(PrevState) {
+    console.log("Component did Update");
     if (PrevState !== this.state.user) {
       console.log("User has changed")
     }
@@ -51,6 +59,7 @@ class App extends React.Component {
           username: "",
           user: res.data.message
         });
+        console.log(user);
       })
       .catch((err) => console.log("Error 2", err))
   };
@@ -58,10 +67,23 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>
-          Github User
-        </h1>
-        <input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
+
+        <div className="header" >
+          <h1>
+            Github User
+          </h1>
+          <input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
+          <button onClick={this.getUser} >Find User</button>
+        </div>
+
+        <div>
+          <UserCard user={this.state.user} />
+        </div>
+
+        <div>
+          <FollowerCard followers={this.state.followers} />
+        </div>
+
       </div>
     );
   }
