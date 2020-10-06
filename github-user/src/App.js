@@ -4,6 +4,7 @@ import './App.css';
 
 import UserCard from './Components/UserCard';
 import FollowerCard from './Components/FollowerCard';
+import { Button, Form, Input } from 'reactstrap';
 
 const followers = [];
 const user = [];
@@ -88,10 +89,10 @@ class App extends React.Component {
           <h1>
             Github User
           </h1>
-          <form>
-            <input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
-            <button onClick={this.getUser} >Find User</button>
-          </form>
+          <Form>
+            <Input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
+            <Button className="formButton" color="info"  onClick={this.getUser} >Find User</Button>
+          </Form>
         </div>
 
         <div className="Main" >

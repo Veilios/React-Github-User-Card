@@ -1,5 +1,5 @@
 .app {
-  background-color: darkgrey;
+  background-image: url(depositphotos_77376688-stock-illustration-floral-vector-background.jpg);
 }
 
 .Main {
@@ -30,6 +30,14 @@
   justify-content: center;
   align-items: center;
   padding: 30px;
+}
+
+Form {
+  display: flex;
+}
+
+.formButton {
+  width: 100%;
 }
 
 h1 {

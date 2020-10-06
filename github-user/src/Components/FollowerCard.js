@@ -18,7 +18,7 @@ const FollowerCard = (props) => {
                         <CardTitle>{follower.login}</CardTitle>
                         <CardSubtitle>{follower.name}</CardSubtitle>
                     </CardBody>
-                    <Button >Visit</Button>
+                    <Button color="info" >Visit</Button>
                     </Card>
                 )
             })}
