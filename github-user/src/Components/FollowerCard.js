@@ -1,11 +1,28 @@
 import React from 'react';
+import {
+    Card, CardImg, CardBody,
+    CardTitle, Button, CardSubtitle
+  } from 'reactstrap';
 
 
 const FollowerCard = (props) => {
 
 
     return (
-        <p>{props.followers}</p>
+        <div className="followerDiv" >
+            {props.followers.map((follower) => {
+                return (
+                    <Card className="follower" key={follower.id} >
+                    <CardImg top width="100%" src={follower.avatar_url} alt="Card image cap" />
+                    <CardBody>
+                        <CardTitle>{follower.login}</CardTitle>
+                        <CardSubtitle>{follower.name}</CardSubtitle>
+                    </CardBody>
+                    <Button >Visit</Button>
+                    </Card>
+                )
+            })}
+        </div>
     );
 };
 

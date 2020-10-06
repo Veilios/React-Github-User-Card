@@ -1,3 +1,37 @@
-body {
+.app {
   background-color: darkgrey;
+}
+
+.Main {
+  width: auto;
+  height: auto;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.followerDiv {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.follower {
+  margin: 50px;
+  width: 200px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+h1 {
+  padding: 30px;
 }

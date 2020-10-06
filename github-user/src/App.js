@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      username: "Veilios",
       user: [],
       followers: []
     };
@@ -34,10 +34,10 @@ class App extends React.Component {
         console.log("Res", res.data)
         this.setState({
           ...this.state,
-          user: res.data.login
+          user: res.data
         });
-        console.log("User", user);
-        console.log("Followers", followers);
+        console.log("User", user, followers);
+        this.getFollowers();
       })
       .catch((err) => console.log("Error 1", err));
       ;
@@ -56,27 +56,45 @@ class App extends React.Component {
       .then((res) => {
         this.setState({
           ...this.state,
-          username: "",
-          user: res.data.message
+          user: res.data
         });
         console.log(user);
+        this.getFollowers();
       })
       .catch((err) => console.log("Error 2", err))
   };
 
+  getFollowers = () => {
+    axios
+      .get(`https://api.github.com/users/${this.state.username}/followers`)
+      .then((res => {
+        console.log("followers", res.data);
+        this.setState({
+          ...this.state,
+          username: "",
+          followers: res.data
+        });
+      }))
+      .catch((err) => {
+        console.log("Error 3", err);
+      });
+  };
+
   render() {
     return (
-      <div>
+      <div className="app">
 
         <div className="header" >
           <h1>
             Github User
           </h1>
-          <input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
-          <button onClick={this.getUser} >Find User</button>
+          <form>
+            <input type="text" className="user-search" onChange={this.handleChange} value={this.state.username} placeholder="Github Username" />
+            <button onClick={this.getUser} >Find User</button>
+          </form>
         </div>
 
-        <div>
+        <div className="Main" >
           <UserCard user={this.state.user} />
         </div>
 
